@@ -18,17 +18,17 @@ public class LetterBehavior : MonoBehaviour {
         rigibody = GetComponent<Rigidbody>();
     }
 
-    public void SetData() {
+    public void SetData(Color color) {
         rigibody = GetComponent<Rigidbody>();
         vitesse = maxVelocity;
         rigibody.velocity = new Vector3(0, -vitesse, 0);
+        letterRenderer.material.color = color;
     }
 
     public void AddDamage(int damage) {
         hp = hp - damage;
         if (hp <= 0) {
-            Debug.Log("call add score - letter");
-            GamePlayManager.Instance.AddScore(false, null, gameObject.name);
+            GamePlayManager.Instance.AddScore(false, letterRenderer.material.color, gameObject.name);
             gameObject.SetActive(false);
         }
     }

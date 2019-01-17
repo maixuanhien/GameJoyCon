@@ -27,18 +27,18 @@ public class GamePlayManager : Singleton<GamePlayManager> {
         return score;
     }
 
-    public void AddScore(bool check_isBalloon, Material check_color = null, string letter = null) {
+    public void AddScore(bool check_isBalloon, Color check_color, string letter = null) {
         if (score < 0) {
             score = score + Constants.SCORE_BALLOON;
         } else {
             if (isBalloon && check_isBalloon) {
-                if (check_color != null && listColor[index].color == check_color.color) {
+                if (listColor[index].color == check_color) {
                     score = score + Constants.SCORE_BALLOON;
                     index = -1;
                 }
             } else if(!isBalloon && !check_isBalloon) {
                 if (index >= 0) {
-                    if (letter != null && listAlphabet[index].name.CompareTo(letter.Substring(0, 1)) == 0) {
+                    if (letter != null && listAlphabet[index].name == letter.Substring(0, 1)) {
                         score = score + Constants.SCORE_LETTER;
                         index = -1;
                     }
