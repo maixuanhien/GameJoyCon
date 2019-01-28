@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ScenePlay.unity
     guid: 94af9c5dc452f8c44b1756f669736f73
+  - enabled: 0
+    path: Assets/Scenes/ScenePlayMouse.unity
+    guid: 6f243f84fd20e49c19b9356ea38824a3
   m_configObjects: {}

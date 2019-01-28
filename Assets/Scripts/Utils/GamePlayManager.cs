@@ -19,12 +19,57 @@ public class GamePlayManager : Singleton<GamePlayManager> {
     [SerializeField]
     private int index = -1;
 
+    private bool startGame = false;
+    private float timeStart = 0f;
+    private bool endGame = false;
+    private float timeEnd = 0f;
+
     private void Start() {
         score = scoreStart;
     }
 
+    private void Update()
+    {
+        int level = GetDiffCulty();
+        if (!startGame){
+            if(level != 0){
+                startGame = true;
+                timeStart = Time.time;
+            }
+        }else{
+            if(!endGame){
+                if(level == -1){
+                    timeEnd = Time.time;
+                    endGame = true;
+                }
+            }
+        }
+    }
+
     public int GetScore() {
         return score;
+    }
+
+    public bool StartGame(){
+        return startGame;
+    }
+
+    public bool EndGame(){
+        if(startGame){
+            return endGame;
+        }
+        return false;
+    }
+
+    public float GlobalTime(){
+        if (startGame){
+            if (endGame){
+                return timeEnd - timeStart;
+            }else{
+                return Time.time - timeStart;
+            }
+        }
+        return -1;
     }
 
     public void AddScore(bool check_isBalloon, Color check_color, string letter = null) {
